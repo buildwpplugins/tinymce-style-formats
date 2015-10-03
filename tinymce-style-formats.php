@@ -1,7 +1,7 @@
 <?php 
 /**
  * Plugin Name: TinyMCE Style Formats
- * Plugin URI:  http://wordpress.org/extend/plugins/health-check/
+ * Plugin URI:  https://github.com/buildwpplugins/tinymce-style-formats
  * Description: Allows editors to create buttons using the TinyMCE formats menu.
  * Version:     0.1
  * Author:      Build WP Plugins
@@ -13,16 +13,16 @@ if ( ! defined( 'BWPP_TSF_VERSION' ) ) {
 	define('BWPP_TSF_VERSION', '0.1');
 }
 
+// Register our callback to the appropriate filter
+// _2 places the new button on the second line
+add_filter('mce_buttons_2', 'bwpp_tsf_mce_buttons');
+
 // Callback function to insert 'styleselect' into the $buttons array
 function bwpp_tsf_mce_buttons( $buttons ) {
 	array_unshift( $buttons, 'styleselect' );
 	//var_dump($buttons);
 	return $buttons;
 }
-// Register our callback to the appropriate filter
-// _2 places the new button on the second line
-add_filter('mce_buttons_2', 'bwpp_tsf_mce_buttons');
-
 
 // Attach callback to 'tiny_mce_before_init' 
 add_filter( 'tiny_mce_before_init', 'bwpp_tsf_mce_before_init_insert_formats' ); 
